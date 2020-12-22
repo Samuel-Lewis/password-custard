@@ -1,3 +1,6 @@
 # Ignore artifacts:
 build
 coverage
+
+# Ignore dict, too slow
+src/generator/resources
