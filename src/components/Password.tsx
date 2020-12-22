@@ -49,14 +49,14 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
   render() {
     return (
       <Card alignContent="stretch" width="large" align="stretch">
-        <CardHeader pad="medium" background="light-2">
+        <CardHeader pad="medium" background="light-3">
           Your new password is...
         </CardHeader>
-        <CardBody align="center" pad="medium" background="light">
+        <CardBody align="center" pad="medium" background="light-1">
           <Heading level={2}>{this.state.currentPassword}</Heading>
         </CardBody>
 
-        <CardFooter background="light-2">
+        <CardFooter background="light-3">
           <Grid
             align="center"
             fill="horizontal"
