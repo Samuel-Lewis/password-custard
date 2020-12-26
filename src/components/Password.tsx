@@ -11,7 +11,7 @@ import {
 } from "grommet";
 import React from "react";
 import { generatePassword } from "../generator";
-import { Options, OptionsState, defaultOptions } from "./Options";
+import { defaultOptions, Options, OptionsState } from "./Options";
 
 type PasswordProps = {
   onPasswordGenerated?: (newPassword: string) => void;
@@ -27,7 +27,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
   constructor(props: PasswordProps) {
     super(props);
     this.state = {
-      currentPassword: '',
+      currentPassword: "",
       optionsOpen: false,
       options: defaultOptions,
     };
@@ -47,7 +47,9 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
   };
 
   handleOptionsChange = (newState: OptionsState) => {
-    this.setState({ options: newState }, () => {this.createNewPassword()});
+    this.setState({ options: newState }, () => {
+      this.createNewPassword();
+    });
   };
 
   render() {

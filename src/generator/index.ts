@@ -1,7 +1,7 @@
 import { PasswordOptions, Transformer } from "./types";
 import {
-  nounAppender,
   adjectiveAppender,
+  nounAppender,
   verbAppender,
 } from "./transformers/words";
 import { splitter } from "./transformers/splitter";

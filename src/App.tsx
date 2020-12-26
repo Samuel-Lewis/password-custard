@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Grid, Grommet, Heading, Main } from "grommet";
 import PCFooter from "./components/Footer";
+import PCHeader from "./components/Header";
 import { Password } from "./components/Password";
 import { History } from "./components/History";
 import theme from "./theme";
@@ -14,7 +15,8 @@ function App() {
 
   return (
     <Grommet theme={theme} full>
-      <Grid fill rows={["flex", "auto"]}>
+      <Grid fill rows={["auto", "flex", "auto"]}>
+        <PCHeader />
         <Main
           pad="medium"
           align="center"
