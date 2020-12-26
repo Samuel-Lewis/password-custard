@@ -31,6 +31,7 @@ export class Options extends React.Component<OptionsProps, OptionsState> {
       <Box background="light-2" pad="medium" fill alignContent="center">
         <CheckBox
           label="Split words"
+          reverse
           toggle
           onChange={(event) =>
             this.handleFieldChange(

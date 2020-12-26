@@ -1,10 +1,10 @@
-const globalTheme = {
+import { grommet } from "grommet/themes";
+import { deepMerge } from "grommet/utils";
+
+const globalTheme = deepMerge(grommet, {
   global: {
     font: {
-      color: "red",
-      family: "Monaco",
-      size: "14px",
-      height: "20px",
+      family: "Verdana",
     },
     colors: {
       brand: "#5885AF",
@@ -12,6 +12,11 @@ const globalTheme = {
       "accent-1": "#C3E0E5",
     },
   },
-};
+  tip: {
+    content: {
+      background: "light-1",
+    },
+  },
+});
 
 export default globalTheme;

@@ -5,6 +5,11 @@ import PCHeader from "./components/Header";
 import { Password } from "./components/Password";
 import { History } from "./components/History";
 import theme from "./theme";
+import styled from "styled-components";
+
+const BorderHeading = styled(Heading)`
+  text-transform: uppercase;
+`;
 
 function App() {
   const [history, setHistory] = useState([] as string[]);
@@ -26,11 +31,13 @@ function App() {
             size: "xsmall",
           }}
         >
-          <Heading margin="small" textAlign="center">
-            PASSWORD CUSTARD
-          </Heading>
-          <Password onPasswordGenerated={onNewPassword} />
-          <History passwords={history} />
+          <Grid rows={["auto", "fill", "auto"]}>
+            <BorderHeading margin="medium" textAlign="center">
+              Password Custard
+            </BorderHeading>
+            <Password onPasswordGenerated={onNewPassword} />
+            <History passwords={history} />
+          </Grid>
         </Main>
         <PCFooter />
       </Grid>

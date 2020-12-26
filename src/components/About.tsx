@@ -10,7 +10,7 @@ export const AboutPanel: React.FunctionComponent<AboutPanelProps> = (props) => {
   const { onClose } = props;
   return (
     <Layer position="center" onEsc={onClose} onClickOutside={onClose}>
-      <Box pad="medium" gap="small" width="large">
+      <Box pad="medium" gap="small" width="1/3">
         <Box flex={false} direction="row" justify="between">
           <Heading level={2} margin="none">
             About

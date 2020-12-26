@@ -12,7 +12,7 @@ export default function PCHeader() {
     <>
       {aboutOpen && <AboutPanel onClose={onClose} />}
       <Header background="brand">
-        <Nav direction="row">
+        <Nav direction="row" gap="small">
           <Button
             icon={
               <img

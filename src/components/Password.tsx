@@ -12,6 +12,14 @@ import {
 import React from "react";
 import { generatePassword } from "../generator";
 import { defaultOptions, Options, OptionsState } from "./Options";
+import { Copy } from "grommet-icons";
+import copyTextToClipboard from "copy-text-to-clipboard";
+
+import styled from "styled-components";
+
+const PasswordField = styled(Heading)`
+  font-family: "Monaco";
+`;
 
 type PasswordProps = {
   onPasswordGenerated?: (newPassword: string) => void;
@@ -21,6 +29,7 @@ type PasswordState = {
   currentPassword: string;
   optionsOpen: boolean;
   options: OptionsState;
+  justCopied: boolean;
 };
 
 export class Password extends React.Component<PasswordProps, PasswordState> {
@@ -30,6 +39,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
       currentPassword: "",
       optionsOpen: false,
       options: defaultOptions,
+      justCopied: false,
     };
   }
 
@@ -52,14 +62,19 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
     });
   };
 
+  handleCopy = () => {
+    this.setState({ justCopied: true });
+    copyTextToClipboard(this.state.currentPassword);
+  };
+
   render() {
     return (
-      <Card alignContent="stretch" width="large" align="stretch">
+      <Card alignContent="stretch" align="stretch">
         <CardHeader pad="medium" background="light-3">
           Your new password is...
         </CardHeader>
         <CardBody align="center" pad="medium" background="light-1">
-          <Heading level={2}>{this.state.currentPassword}</Heading>
+          <PasswordField level={3}>{this.state.currentPassword}</PasswordField>
         </CardBody>
 
         <CardFooter background="light-3">
@@ -67,17 +82,27 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
             align="center"
             fill="horizontal"
             margin="medium"
-            columns={["1/3", "1/3", "1/3"]}
+            columns={["1/4", "1/2", "1/4"]}
           >
-            <Box />
-            <Box>
+            <Box align="start">
               <Button
-                primary
-                label="Generate"
-                size="large"
-                onClick={this.createNewPassword}
+                plain={false}
+                onClick={this.handleCopy}
+                onMouseOut={() => {
+                  this.setState({ justCopied: false });
+                }}
+                icon={<Copy />}
+                tip={this.state.justCopied ? "Copied!" : "Copy to clipboard"}
+                title={"Copy to clipboard"}
+                hoverIndicator
               />
             </Box>
+            <Button
+              primary
+              label="Generate"
+              size="large"
+              onClick={this.createNewPassword}
+            />
             <Box align="end">
               <Button
                 label="Options"
