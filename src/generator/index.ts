@@ -1,10 +1,26 @@
-import { nouns } from "./resources/nouns";
-
-export type PasswordOptions = {
-  words: number;
-};
+import { PasswordOptions, Transformer } from "./types";
+import {
+  nounAppender,
+  adjectiveAppender,
+  verbAppender,
+} from "./transformers/words";
+import { splitter } from "./transformers/splitter";
 
 export const generatePassword = (options: PasswordOptions): string => {
-  const r = Math.floor(Math.random() * nouns.length - 1);
-  return nouns[r];
+  let transformers: Transformer[] = [
+    adjectiveAppender,
+    nounAppender,
+    verbAppender,
+  ];
+
+  if (options.delimiter) {
+    transformers.push(splitter(options.delimiter));
+  }
+
+  let tokens: string[] = [];
+  transformers.forEach((t) => {
+    tokens = t(tokens);
+  });
+
+  return tokens.join("");
 };

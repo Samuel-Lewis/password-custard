@@ -11,7 +11,7 @@ import {
 } from "grommet";
 import React from "react";
 import { generatePassword } from "../generator";
-import { Options } from "./Options";
+import { Options, OptionsState, defaultOptions } from "./Options";
 
 type PasswordProps = {
   onPasswordGenerated?: (newPassword: string) => void;
@@ -20,30 +20,34 @@ type PasswordProps = {
 type PasswordState = {
   currentPassword: string;
   optionsOpen: boolean;
+  options: OptionsState;
 };
 
 export class Password extends React.Component<PasswordProps, PasswordState> {
   constructor(props: PasswordProps) {
     super(props);
-    const iniPassword = generatePassword({ words: 1 });
     this.state = {
-      currentPassword: iniPassword,
+      currentPassword: '',
       optionsOpen: false,
+      options: defaultOptions,
     };
-
-    if (props.onPasswordGenerated) {
-      props.onPasswordGenerated(iniPassword);
-    }
   }
 
-  setNewPassword = () => {
-    const options = { words: 1 };
-    const newPassword = generatePassword(options);
+  componentDidMount() {
+    this.createNewPassword();
+  }
+
+  createNewPassword = () => {
+    const newPassword = generatePassword(this.state.options);
     this.setState({ currentPassword: newPassword });
 
     if (this.props.onPasswordGenerated) {
       this.props.onPasswordGenerated(newPassword);
     }
+  };
+
+  handleOptionsChange = (newState: OptionsState) => {
+    this.setState({ options: newState }, () => {this.createNewPassword()});
   };
 
   render() {
@@ -69,7 +73,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
                 primary
                 label="Generate"
                 size="large"
-                onClick={this.setNewPassword}
+                onClick={this.createNewPassword}
               />
             </Box>
             <Box align="end">
@@ -83,7 +87,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
           </Grid>
         </CardFooter>
         <Collapsible open={this.state.optionsOpen} direction={"vertical"}>
-          <Options />
+          <Options onValueChange={this.handleOptionsChange} />
         </Collapsible>
       </Card>
     );
