@@ -1,4 +1,4 @@
-import { Transformer } from "../types";
+import { Transformer } from "../../types";
 import { nouns } from "../resources/nouns";
 import { verbs } from "../resources/verbs";
 import { adjectives } from "../resources/adjectives";

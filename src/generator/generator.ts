@@ -1,10 +1,10 @@
-import { PasswordOptions, Transformer } from "./types";
+import { PasswordOptions, Transformer } from "../types";
 import {
   adjectiveAppender,
   nounAppender,
   verbAppender,
 } from "./transformers/words";
-import { splitter } from "./transformers/splitter";
+import { delimiters } from "./transformers/delimiters";
 
 export const generatePassword = (options: PasswordOptions): string => {
   let transformers: Transformer[] = [
@@ -13,8 +13,8 @@ export const generatePassword = (options: PasswordOptions): string => {
     verbAppender,
   ];
 
-  if (options.delimiter) {
-    transformers.push(splitter(options.delimiter));
+  if (options.delimiters) {
+    transformers.push(delimiters(options.delimiters));
   }
 
   let tokens: string[] = [];

@@ -1,20 +1,25 @@
 import React from "react";
-import { Box, CheckBox } from "grommet";
-import { PasswordOptions } from "../generator/types";
+import { Box } from "grommet";
+import { PasswordOptions } from "../types";
+import { Delimiters } from "./options/Delimiters";
 
 export type OptionsState = PasswordOptions;
 type OptionsProps = {
   onValueChange: (newState: OptionsState) => void;
+  options: OptionsState;
 };
 
-export const defaultOptions: OptionsState = {
-  words: 1,
+export const getDefaultOptions = (): PasswordOptions => {
+  return {
+    words: 1,
+    delimiters: [],
+  };
 };
 
 export class Options extends React.Component<OptionsProps, OptionsState> {
   constructor(props: OptionsProps) {
     super(props);
-    this.state = defaultOptions;
+    this.state = props.options;
   }
 
   handleFieldChange = <T extends keyof OptionsState, K extends OptionsState[T]>(
@@ -29,16 +34,9 @@ export class Options extends React.Component<OptionsProps, OptionsState> {
   render() {
     return (
       <Box background="light-2" pad="medium" fill alignContent="center">
-        <CheckBox
-          label="Split words"
-          reverse
-          toggle
-          onChange={(event) =>
-            this.handleFieldChange(
-              "delimiter",
-              event.target.checked ? "-" : undefined
-            )
-          }
+        <Delimiters
+          handleFieldChange={this.handleFieldChange}
+          value={this.state.delimiters}
         />
       </Box>
     );

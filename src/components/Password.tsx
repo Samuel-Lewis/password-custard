@@ -10,8 +10,8 @@ import {
   Heading,
 } from "grommet";
 import React from "react";
-import { generatePassword } from "../generator";
-import { defaultOptions, Options, OptionsState } from "./Options";
+import { generatePassword } from "../generator/generator";
+import { getDefaultOptions, Options, OptionsState } from "./Options";
 import { Copy } from "grommet-icons";
 import copyTextToClipboard from "copy-text-to-clipboard";
 
@@ -38,7 +38,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
     this.state = {
       currentPassword: "",
       optionsOpen: false,
-      options: defaultOptions,
+      options: getDefaultOptions(),
       justCopied: false,
     };
   }
@@ -114,7 +114,10 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
           </Grid>
         </CardFooter>
         <Collapsible open={this.state.optionsOpen} direction={"vertical"}>
-          <Options onValueChange={this.handleOptionsChange} />
+          <Options
+            onValueChange={this.handleOptionsChange}
+            options={this.state.options}
+          />
         </Collapsible>
       </Card>
     );
