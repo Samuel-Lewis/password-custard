@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "grommet";
 import { PasswordOptions } from "../types";
 import { Delimiters } from "./options/Delimiters";
+import { Words } from "./options/Words";
 
 export type OptionsState = PasswordOptions;
 type OptionsProps = {
@@ -11,8 +12,8 @@ type OptionsProps = {
 
 export const getDefaultOptions = (): PasswordOptions => {
   return {
-    words: 1,
-    delimiters: [],
+    words: 2,
+    delimiters: ["-"],
   };
 };
 
@@ -34,9 +35,13 @@ export class Options extends React.Component<OptionsProps, OptionsState> {
   render() {
     return (
       <Box background="light-2" pad="medium" fill alignContent="center">
-        <Delimiters
+        <Words
+          value={this.state.words}
           handleFieldChange={this.handleFieldChange}
+        />
+        <Delimiters
           value={this.state.delimiters}
+          handleFieldChange={this.handleFieldChange}
         />
       </Box>
     );

@@ -7,11 +7,16 @@ import {
 import { delimiters } from "./transformers/delimiters";
 
 export const generatePassword = (options: PasswordOptions): string => {
-  let transformers: Transformer[] = [
-    adjectiveAppender,
-    nounAppender,
-    verbAppender,
-  ];
+  let transformers: Transformer[] = [];
+
+  //
+  // adjectiveAppender,
+  //   nounAppender,
+  //   verbAppender,
+  // ];
+
+  const words = new Array(options.words).fill(nounAppender);
+  transformers = transformers.concat(words);
 
   if (options.delimiters) {
     transformers.push(delimiters(options.delimiters));
