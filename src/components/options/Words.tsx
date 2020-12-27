@@ -18,7 +18,7 @@ export const Words: React.FunctionComponent<WordsProps> = (props) => {
       <RangeInput
         value={value}
         min={1}
-        max={10}
+        max={8}
         // @ts-ignore
         onChange={(event) =>
           handleFieldChange("words", Number(event.target.value))

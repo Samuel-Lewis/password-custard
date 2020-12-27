@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Grommet, Heading, Main } from "grommet";
+import { Box, Grid, Grommet, Heading, Main } from "grommet";
 import PCFooter from "./components/Footer";
 import PCHeader from "./components/Header";
 import { Password } from "./components/Password";
@@ -31,13 +31,15 @@ function App() {
             size: "xsmall",
           }}
         >
-          <Grid rows={["auto", "fill", "auto"]}>
-            <BorderHeading margin="medium" textAlign="center">
-              Password Custard
-            </BorderHeading>
-            <Password onPasswordGenerated={onNewPassword} />
-            <History passwords={history} />
-          </Grid>
+          <Box fill width={{ max: "large" }}>
+            <Grid alignContent="center" rows={["auto", "fill", "auto"]}>
+              <BorderHeading margin="medium" textAlign="center">
+                Password Custard
+              </BorderHeading>
+              <Password onPasswordGenerated={onNewPassword} />
+              <History passwords={history} />
+            </Grid>
+          </Box>
         </Main>
         <PCFooter />
       </Grid>

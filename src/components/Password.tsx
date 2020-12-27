@@ -16,9 +16,11 @@ import { Copy } from "grommet-icons";
 import copyTextToClipboard from "copy-text-to-clipboard";
 
 import styled from "styled-components";
+import { StrengthMeter } from "./Strength";
 
 const PasswordField = styled(Heading)`
   font-family: "Monaco";
+  text-align: center;
 `;
 
 type PasswordProps = {
@@ -73,8 +75,11 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
         <CardHeader pad="medium" background="light-3">
           Your new password is...
         </CardHeader>
-        <CardBody align="center" pad="medium" background="light-1">
-          <PasswordField level={3}>{this.state.currentPassword}</PasswordField>
+        <CardBody align="center" pad="none" background="light-1">
+          <PasswordField margin={{ top: "large", bottom: "large" }} level={3}>
+            {this.state.currentPassword}
+          </PasswordField>
+          <StrengthMeter password={this.state.currentPassword} />
         </CardBody>
 
         <CardFooter background="light-3">
