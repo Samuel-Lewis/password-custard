@@ -1,9 +1,9 @@
+import React from "react";
 import { Anchor, Button, Header, Nav } from "grommet";
-import React, { useState } from "react";
 import { AboutPanel } from "./About";
 
 export default function PCHeader() {
-  const [aboutOpen, setAboutOpen] = useState(false);
+  const [aboutOpen, setAboutOpen] = React.useState(false);
   const onClose = () => {
     setAboutOpen(false);
   };
@@ -30,6 +30,7 @@ export default function PCHeader() {
           <Anchor
             alignSelf="center"
             label="About"
+            color={"light-2"}
             onClick={() => {
               setAboutOpen(true);
             }}

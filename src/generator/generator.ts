@@ -1,29 +1,18 @@
 import { PasswordOptions, Transformer } from "../types";
-import {
-  adjectiveAppender,
-  nounAppender,
-  verbAppender,
-} from "./transformers/words";
+import { wordAppender } from "./transformers/words";
 import { delimiters } from "./transformers/delimiters";
 import { entropy } from "./transformers/entropy";
+import { upperCase } from "./transformers/upperCase";
+import { titleCase } from "./transformers/titleCase";
 
 export const generatePassword = (options: PasswordOptions): string => {
-  let transformers: Transformer[] = [];
-
-  //
-  // adjectiveAppender,
-  //   nounAppender,
-  //   verbAppender,
-  // ];
-
-  const words = new Array(options.words).fill(nounAppender);
-  transformers = transformers.concat(words);
-
-  if (options.delimiters) {
-    transformers.push(delimiters(options.delimiters));
-  }
-
-  transformers.push(entropy(options.entropy));
+  let transformers: Transformer[] = [
+    wordAppender(options.words),
+    titleCase(),
+    upperCase(options.upperCase),
+    delimiters(options.delimiters),
+    entropy(options.entropy),
+  ];
 
   let tokens: string[] = [];
   transformers.forEach((t) => {

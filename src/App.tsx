@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Grid, Grommet, Heading, Main } from "grommet";
 import PCFooter from "./components/Footer";
 import PCHeader from "./components/Header";
@@ -12,7 +12,7 @@ const BorderHeading = styled(Heading)`
 `;
 
 function App() {
-  const [history, setHistory] = useState([] as string[]);
+  const [history, setHistory] = React.useState([] as string[]);
 
   const onNewPassword = (newPassword: string) => {
     setHistory([newPassword, ...history]);

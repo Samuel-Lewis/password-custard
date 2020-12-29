@@ -8,6 +8,8 @@ export type PasswordOptions = {
   words: number;
   delimiters: string[];
   entropy: number;
+  upperCase: number;
+  titleCase: boolean;
 };
 
 export type HandleFieldChange = <

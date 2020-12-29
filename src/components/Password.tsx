@@ -21,6 +21,7 @@ import { StrengthMeter } from "./Strength";
 const PasswordField = styled(Heading)`
   font-family: "Monaco";
   text-align: center;
+  overflow: scroll;
 `;
 
 type PasswordProps = {
@@ -96,7 +97,8 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
                 onMouseOut={() => {
                   this.setState({ justCopied: false });
                 }}
-                icon={<Copy />}
+                icon={<Copy size="medium" />}
+                size="medium"
                 tip={this.state.justCopied ? "Copied!" : "Copy to clipboard"}
                 title={"Copy to clipboard"}
                 hoverIndicator
@@ -111,6 +113,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
             <Box align="end">
               <Button
                 label="Options"
+                size="medium"
                 onClick={() => {
                   this.setState({ optionsOpen: !this.state.optionsOpen });
                 }}
