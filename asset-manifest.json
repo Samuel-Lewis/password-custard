@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.js": "/password-custard/static/js/main.f78eff3d.chunk.js",
-    "main.js.map": "/password-custard/static/js/main.f78eff3d.chunk.js.map",
+    "main.js": "/password-custard/static/js/main.e90af38b.chunk.js",
+    "main.js.map": "/password-custard/static/js/main.e90af38b.chunk.js.map",
     "runtime-main.js": "/password-custard/static/js/runtime-main.1fce2e25.js",
     "runtime-main.js.map": "/password-custard/static/js/runtime-main.1fce2e25.js.map",
     "static/js/2.41316670.chunk.js": "/password-custard/static/js/2.41316670.chunk.js",
@@ -12,6 +12,6 @@
   "entrypoints": [
     "static/js/runtime-main.1fce2e25.js",
     "static/js/2.41316670.chunk.js",
-    "static/js/main.f78eff3d.chunk.js"
+    "static/js/main.e90af38b.chunk.js"
   ]
 }
