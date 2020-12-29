@@ -3,6 +3,7 @@ import { Box } from "grommet";
 import { PasswordOptions } from "../types";
 import { Delimiters } from "./options/Delimiters";
 import { Words } from "./options/Words";
+import { Entropy } from "./options/Entropy";
 
 export type OptionsState = PasswordOptions;
 type OptionsProps = {
@@ -14,6 +15,7 @@ export const getDefaultOptions = (): PasswordOptions => {
   return {
     words: 2,
     delimiters: ["-"],
+    entropy: 5,
   };
 };
 
@@ -35,6 +37,10 @@ export class Options extends React.Component<OptionsProps, OptionsState> {
   render() {
     return (
       <Box background="light-2" pad="medium" fill alignContent="center">
+        <Entropy
+          value={this.state.entropy}
+          handleFieldChange={this.handleFieldChange}
+        />
         <Words
           value={this.state.words}
           handleFieldChange={this.handleFieldChange}
