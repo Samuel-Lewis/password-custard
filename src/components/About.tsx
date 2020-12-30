@@ -1,6 +1,6 @@
+import React from "react";
 import { Anchor, Box, Button, Heading, Layer, Paragraph } from "grommet";
 import { Close } from "grommet-icons";
-import React from "react";
 
 type AboutPanelProps = {
   onClose: () => void;

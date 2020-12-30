@@ -1,5 +1,5 @@
-import { Box, Heading, CheckBox } from "grommet";
 import React from "react";
+import { Box, CheckBox, Heading } from "grommet";
 import { HandleFieldChange, PasswordOptions } from "../../types";
 
 type TitleCaseProps = {
@@ -10,17 +10,14 @@ type TitleCaseProps = {
 export const TitleCase: React.FunctionComponent<TitleCaseProps> = (props) => {
   const { handleFieldChange, value } = props;
   return (
-    <Box direction="row">
-      <Heading level={4} margin="small">
-        Title Case
-      </Heading>
-
+    <Box>
       <CheckBox
         toggle
+        label={<Heading level={4}>Title Case</Heading>}
         checked={value}
-        onChange={(v) => {
-          handleFieldChange("titleCase", v.target.checked);
-        }}
+        onChange={(event) =>
+          handleFieldChange("titleCase", event.target.checked)
+        }
       />
     </Box>
   );

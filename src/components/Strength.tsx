@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Meter } from "grommet";
-import styled from "styled-components";
 // @ts-ignore
 import passwordMeter from "passwordmeter";
+import styled from "styled-components";
 
 const ColouredMeter = styled(Meter)``;
 

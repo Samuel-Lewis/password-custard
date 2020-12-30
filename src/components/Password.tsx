@@ -1,3 +1,5 @@
+import React from "react";
+import copyTextToClipboard from "copy-text-to-clipboard";
 import {
   Box,
   Button,
@@ -9,11 +11,9 @@ import {
   Grid,
   Heading,
 } from "grommet";
-import React from "react";
+import { Copy } from "grommet-icons";
 import { generatePassword } from "../generator/generator";
 import { getDefaultOptions, Options, OptionsState } from "./Options";
-import { Copy } from "grommet-icons";
-import copyTextToClipboard from "copy-text-to-clipboard";
 
 import styled from "styled-components";
 import { StrengthMeter } from "./Strength";
@@ -100,7 +100,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
                 icon={<Copy size="medium" />}
                 size="medium"
                 tip={this.state.justCopied ? "Copied!" : "Copy to clipboard"}
-                title={"Copy to clipboard"}
+                title="Copy to clipboard"
                 hoverIndicator
               />
             </Box>
@@ -121,7 +121,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
             </Box>
           </Grid>
         </CardFooter>
-        <Collapsible open={this.state.optionsOpen} direction={"vertical"}>
+        <Collapsible open={this.state.optionsOpen} direction="vertical">
           <Options
             onValueChange={this.handleOptionsChange}
             options={this.state.options}

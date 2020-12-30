@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Grid, Grommet, Heading, Main } from "grommet";
+import styled from "styled-components";
 import PCFooter from "./components/Footer";
 import PCHeader from "./components/Header";
-import { Password } from "./components/Password";
 import { History } from "./components/History";
+import { Password } from "./components/Password";
 import theme from "./theme";
-import styled from "styled-components";
 
 const BorderHeading = styled(Heading)`
   text-transform: uppercase;

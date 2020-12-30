@@ -1,6 +1,9 @@
 import { Transformer } from "../../types";
 
-export const titleCase = (): Transformer => (tokens) => {
+export const titleCase = (include: boolean): Transformer => (tokens) => {
+  if (!include) {
+    return tokens;
+  }
   return tokens.map((token: string) =>
     token.replace(
       /\w\S*/g,

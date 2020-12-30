@@ -10,6 +10,8 @@ export type PasswordOptions = {
   entropy: number;
   upperCase: number;
   titleCase: boolean;
+  leet: number;
+  numbers: number;
 };
 
 export type HandleFieldChange = <

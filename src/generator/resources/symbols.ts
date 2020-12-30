@@ -1,4 +1,3 @@
-
 // As defined by OWASP https://owasp.org/www-community/password-special-characters
 export const symbols = ` !"#$%&'()*+,-./:;<=>?@[\\]^_\`{|}~`.split('');
 export const alphaLower = `abcdefghijklmnopqrstuvwxyz`.split('');

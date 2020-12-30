@@ -8,6 +8,8 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 
 export const getTokenIndicies = (tokens: string[]) => {
   return tokens.flatMap((token, tokenIndex) =>
-    token.split("").map((_, stringIndex) => ({ tokenIndex, stringIndex }))
+    token
+      .split("")
+      .map((char, stringIndex) => ({ tokenIndex, stringIndex, char }))
   );
 };

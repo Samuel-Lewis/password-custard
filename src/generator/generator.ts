@@ -1,21 +1,25 @@
 import { PasswordOptions, Transformer } from "../types";
-import { wordAppender } from "./transformers/words";
-import { delimiters } from "./transformers/delimiters";
 import { entropy } from "./transformers/entropy";
-import { upperCase } from "./transformers/upperCase";
+import { delimiters } from "./transformers/delimiters";
+import { leet } from "./transformers/leet";
+import { number } from "./transformers/number";
 import { titleCase } from "./transformers/titleCase";
+import { upperCase } from "./transformers/upperCase";
+import { wordAppender } from "./transformers/words";
 
 export const generatePassword = (options: PasswordOptions): string => {
   let transformers: Transformer[] = [
     wordAppender(options.words),
-    titleCase(),
+    leet(options.leet),
+    titleCase(options.titleCase),
     upperCase(options.upperCase),
+    number(options.numbers),
     delimiters(options.delimiters),
     entropy(options.entropy),
   ];
 
   let tokens: string[] = [];
-  transformers.forEach((t) => {
+  transformers.forEach((t, i) => {
     tokens = t(tokens);
   });
 

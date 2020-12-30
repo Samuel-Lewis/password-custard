@@ -1,4 +1,4 @@
-export const leet = {
+export const leetSubstitutes:  { [key: string]: string[]; } = {
   a: ["4", "@", "^"],
   b: ["8", "6"],
   c: ["(", "<", "{"],

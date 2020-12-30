@@ -30,7 +30,7 @@ export default function PCHeader() {
           <Anchor
             alignSelf="center"
             label="About"
-            color={"light-2"}
+            color="light-2"
             onClick={() => {
               setAboutOpen(true);
             }}
