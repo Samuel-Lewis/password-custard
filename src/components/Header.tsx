@@ -1,6 +1,6 @@
 import React from "react";
-import { Anchor, Box, Button, Header as GHeader, Nav } from "grommet";
-import { Sun, Moon } from "grommet-icons";
+import { Anchor, Box, Button, Header as GHeader } from "grommet";
+import { Moon, Sun } from "grommet-icons";
 import { AboutPanel } from "./About";
 import { ThemeMode } from "../types";
 
@@ -10,7 +10,9 @@ type HeaderProps = {
 
 export const Header: React.FunctionComponent<HeaderProps> = (props) => {
   const [aboutOpen, setAboutOpen] = React.useState(false);
-  const [darkMode, setDarkMode] = React.useState(false);
+
+  const startTheme = localStorage.getItem("themeMode") === "dark";
+  const [darkMode, setDarkMode] = React.useState(startTheme);
 
   const onCloseCallback = React.useCallback(() => {
     setAboutOpen(false);
@@ -18,7 +20,9 @@ export const Header: React.FunctionComponent<HeaderProps> = (props) => {
 
   const themeChangeCallback = React.useCallback(() => {
     setDarkMode(!darkMode);
-    props.onThemeChange(!darkMode ? "dark" : "light");
+    const newThemeMode = !darkMode ? "dark" : "light";
+    props.onThemeChange(newThemeMode);
+    localStorage.setItem("themeMode", newThemeMode);
   }, [darkMode, props]);
 
   return (

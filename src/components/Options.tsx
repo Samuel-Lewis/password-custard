@@ -11,6 +11,11 @@ type OptionsProps = {
 };
 
 export const getDefaultOptions = (): PasswordOptions => {
+  const local = localStorage.getItem("passwordOptions");
+  if (local) {
+    return JSON.parse(local);
+  }
+
   return {
     words: 3,
     numbers: 1,

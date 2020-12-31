@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Grid, Grommet, Heading, Main } from "grommet";
+import { Box, Grid, Grommet, Heading, Main } from "grommet";
 import styled from "styled-components";
 import PCFooter from "./components/Footer";
 import { Header } from "./components/Header";
@@ -14,7 +14,10 @@ const BorderHeading = styled(Heading)`
 
 function App() {
   const [history, setHistory] = React.useState([] as string[]);
-  const [theme, setTheme] = React.useState<ThemeMode>("light");
+
+  const startTheme = (localStorage.getItem("themeMode") ||
+    "light") as ThemeMode;
+  const [theme, setTheme] = React.useState<ThemeMode>(startTheme);
 
   const onNewPassword = (newPassword: string) => {
     setHistory([newPassword, ...history]);

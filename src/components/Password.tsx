@@ -68,6 +68,10 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
     }
   };
 
+  writeToLocal = () => {
+    localStorage.setItem("passwordOptions", JSON.stringify(this.state.options));
+  };
+
   handleOptionsChange: HandleFieldChange = (field, value) => {
     const newOptions = {
       ...this.state.options,
@@ -76,6 +80,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
 
     this.setState({ options: newOptions }, () => {
       this.createNewPassword();
+      this.writeToLocal();
     });
   };
 
