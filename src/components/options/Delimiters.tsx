@@ -10,8 +10,13 @@ type DelimitersProps = {
 export const Delimiters: React.FunctionComponent<DelimitersProps> = (props) => {
   const { handleFieldChange, value } = props;
   return (
-    <Box>
-      <Heading level={4}>Delimiters</Heading>
+    <Box pad="small">
+      <Heading
+        level={4}
+        margin={{ top: "none", left: "none", right: "none", bottom: "small" }}
+      >
+        Delimiters
+      </Heading>
 
       <CheckBoxGroup
         name="Delimiters"

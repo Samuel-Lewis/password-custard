@@ -10,10 +10,14 @@ type TitleCaseProps = {
 export const TitleCase: React.FunctionComponent<TitleCaseProps> = (props) => {
   const { handleFieldChange, value } = props;
   return (
-    <Box>
+    <Box pad="small">
       <CheckBox
         toggle
-        label={<Heading level={4}>Title Case</Heading>}
+        label={
+          <Heading level={4} margin="none">
+            Title Case
+          </Heading>
+        }
         checked={value}
         onChange={(event) =>
           handleFieldChange("titleCase", event.target.checked)

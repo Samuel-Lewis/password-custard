@@ -9,6 +9,8 @@ export default function PCFooter() {
         icon={<Github />}
         label="Samuel Lewis"
         href="https://github.com/Samuel-Lewis"
+        rel="noopener noreferrer"
+        target="_blank"
       />
     </Footer>
   );

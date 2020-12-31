@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid } from "grommet";
+import { Box } from "grommet";
 import { HandleFieldChange, PasswordOptions } from "../types";
 import { Delimiters } from "./options/Delimiters";
 import { TitleCase } from "./options/TitleCase";
@@ -57,29 +57,33 @@ export const Options: React.FunctionComponent<OptionsProps> = (props) => {
         title={(v) => `Entropy: ${v}%`}
       />
 
-      <Grid columns={["flex", "flex"]} gap="medium">
-        <Delimiters
-          value={props.options.delimiters}
-          handleFieldChange={handleFieldChange}
-        />
-        <TitleCase
-          value={props.options.titleCase}
-          handleFieldChange={handleFieldChange}
-        />
-        <NumberInput
-          id="upperCase"
-          value={props.options.upperCase}
-          max={props.options.words}
-          handleFieldChange={handleFieldChange}
-          title={(v) => `Upper case: ${v}`}
-        />
-        <NumberInput
-          id="leet"
-          value={props.options.leet}
-          handleFieldChange={handleFieldChange}
-          title={(v) => `Leet: ${v}%`}
-        />
-      </Grid>
+      <Box direction="row-responsive" gap="medium">
+        <Box fill>
+          <Delimiters
+            value={props.options.delimiters}
+            handleFieldChange={handleFieldChange}
+          />
+        </Box>
+        <Box fill>
+          <TitleCase
+            value={props.options.titleCase}
+            handleFieldChange={handleFieldChange}
+          />
+          <NumberInput
+            id="upperCase"
+            value={props.options.upperCase}
+            max={props.options.words}
+            handleFieldChange={handleFieldChange}
+            title={(v) => `Upper case: ${v}`}
+          />
+          <NumberInput
+            id="leet"
+            value={props.options.leet}
+            handleFieldChange={handleFieldChange}
+            title={(v) => `Leet: ${v}%`}
+          />
+        </Box>
+      </Box>
     </Box>
   );
 };

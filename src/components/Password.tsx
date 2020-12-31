@@ -1,20 +1,18 @@
 import React from "react";
 import copyTextToClipboard from "copy-text-to-clipboard";
 import {
-  Box,
   Button,
   Card,
   CardBody,
   CardFooter,
   CardHeader,
   Collapsible,
-  Grid,
   Heading,
 } from "grommet";
-import { Copy } from "grommet-icons";
+import { Configure, Copy } from "grommet-icons";
 import styled from "styled-components";
-import { getDefaultOptions, Options } from "./Options";
 import { HandleFieldChange, PasswordOptions } from "../types";
+import { getDefaultOptions, Options } from "./Options";
 
 const PasswordField = styled(Heading)`
   font-family: "Monaco";
@@ -103,43 +101,34 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
           </PasswordField>
         </CardBody>
 
-        <CardFooter background="background-back">
-          <Grid
-            align="center"
-            fill="horizontal"
-            margin="medium"
-            columns={["1/4", "1/2", "1/4"]}
-          >
-            <Box align="start">
-              <Button
-                plain={false}
-                onClick={this.handleCopy}
-                onMouseOut={() => {
-                  this.setState({ justCopied: false });
-                }}
-                icon={<Copy size="medium" />}
-                size="medium"
-                tip={this.state.justCopied ? "Copied!" : "Copy to clipboard"}
-                title="Copy to clipboard"
-                hoverIndicator
-              />
-            </Box>
-            <Button
-              primary
-              label="Generate"
-              size="large"
-              onClick={this.createNewPassword}
-            />
-            <Box align="end">
-              <Button
-                label="Options"
-                size="medium"
-                onClick={() => {
-                  this.setState({ optionsOpen: !this.state.optionsOpen });
-                }}
-              />
-            </Box>
-          </Grid>
+        <CardFooter background="background-back" direction="row" pad="small">
+          <Button
+            onClick={this.handleCopy}
+            onMouseOut={() => {
+              this.setState({ justCopied: false });
+            }}
+            icon={<Copy size="medium" />}
+            size="large"
+            tip={this.state.justCopied ? "Copied!" : "Copy to clipboard"}
+            title="Copy to clipboard"
+            hoverIndicator
+          />
+          <Button
+            primary
+            label="Generate"
+            size="large"
+            onClick={this.createNewPassword}
+          />
+          <Button
+            icon={<Configure size="medium" />}
+            size="large"
+            onClick={() => {
+              this.setState({ optionsOpen: !this.state.optionsOpen });
+            }}
+            tip="Options"
+            title="Options"
+            hoverIndicator
+          />
         </CardFooter>
         <Collapsible open={this.state.optionsOpen} direction="vertical">
           <Options
