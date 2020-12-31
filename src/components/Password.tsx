@@ -12,11 +12,9 @@ import {
   Heading,
 } from "grommet";
 import { Copy } from "grommet-icons";
-import { generatePassword } from "../generator/generator";
-import { getDefaultOptions, Options, OptionsState } from "./Options";
-
 import styled from "styled-components";
-import { StrengthMeter } from "./Strength";
+import { getDefaultOptions, Options } from "./Options";
+import { HandleFieldChange, PasswordOptions } from "../types";
 
 const PasswordField = styled(Heading)`
   font-family: "Monaco";
@@ -31,8 +29,9 @@ type PasswordProps = {
 type PasswordState = {
   currentPassword: string;
   optionsOpen: boolean;
-  options: OptionsState;
+  options: PasswordOptions;
   justCopied: boolean;
+  generatorFunc?: (options: PasswordOptions) => string;
 };
 
 export class Password extends React.Component<PasswordProps, PasswordState> {
@@ -47,11 +46,21 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
   }
 
   componentDidMount() {
-    this.createNewPassword();
+    import("../generator/generator").then(({ generatePassword }) => {
+      this.setState({ generatorFunc: generatePassword }, () => {
+        this.createNewPassword();
+      });
+    });
   }
 
   createNewPassword = () => {
-    const newPassword = generatePassword(this.state.options);
+    const { generatorFunc, options } = this.state;
+
+    if (!generatorFunc) {
+      return "";
+    }
+
+    const newPassword = generatorFunc(options); //generatePassword(this.state.options);
     this.setState({ currentPassword: newPassword });
 
     if (this.props.onPasswordGenerated) {
@@ -59,8 +68,13 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
     }
   };
 
-  handleOptionsChange = (newState: OptionsState) => {
-    this.setState({ options: newState }, () => {
+  handleOptionsChange: HandleFieldChange = (field, value) => {
+    const newOptions = {
+      ...this.state.options,
+      [field]: value,
+    };
+
+    this.setState({ options: newOptions }, () => {
       this.createNewPassword();
     });
   };
@@ -78,9 +92,10 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
         </CardHeader>
         <CardBody align="center" pad="none" background="light-1">
           <PasswordField margin={{ top: "large", bottom: "large" }} level={3}>
-            {this.state.currentPassword}
+            {this.state.generatorFunc
+              ? this.state.currentPassword
+              : "Loading dictionary..."}
           </PasswordField>
-          <StrengthMeter password={this.state.currentPassword} />
         </CardBody>
 
         <CardFooter background="light-3">
@@ -123,7 +138,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
         </CardFooter>
         <Collapsible open={this.state.optionsOpen} direction="vertical">
           <Options
-            onValueChange={this.handleOptionsChange}
+            onFieldChange={this.handleOptionsChange}
             options={this.state.options}
           />
         </Collapsible>

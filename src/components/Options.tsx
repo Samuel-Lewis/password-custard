@@ -1,14 +1,13 @@
 import React from "react";
 import { Box, Grid } from "grommet";
-import { PasswordOptions } from "../types";
+import { HandleFieldChange, PasswordOptions } from "../types";
 import { Delimiters } from "./options/Delimiters";
 import { TitleCase } from "./options/TitleCase";
 import { NumberInput } from "./options/NumberInput";
 
-export type OptionsState = PasswordOptions;
 type OptionsProps = {
-  onValueChange: (newState: OptionsState) => void;
-  options: OptionsState;
+  onFieldChange: HandleFieldChange;
+  options: PasswordOptions;
 };
 
 export const getDefaultOptions = (): PasswordOptions => {
@@ -23,67 +22,59 @@ export const getDefaultOptions = (): PasswordOptions => {
   };
 };
 
-export class Options extends React.Component<OptionsProps, OptionsState> {
-  constructor(props: OptionsProps) {
-    super(props);
-    this.state = props.options;
-  }
+export const Options: React.FunctionComponent<OptionsProps> = (props) => {
+  const { onFieldChange } = props;
+  const handleFieldChange = React.useCallback(
+    (field, value) => {
+      onFieldChange(field, value);
+    },
+    [onFieldChange]
+  );
 
-  handleFieldChange = <T extends keyof OptionsState, K extends OptionsState[T]>(
-    field: T,
-    value: K
-  ): void => {
-    const newState = { ...this.state, [field]: value };
-    this.setState(newState);
-    this.props.onValueChange(newState);
-  };
+  return (
+    <Box background="light-2" pad="medium" alignContent="center">
+      <NumberInput
+        id="words"
+        value={props.options.words}
+        max={8}
+        handleFieldChange={handleFieldChange}
+      />
+      <NumberInput
+        id="numbers"
+        value={props.options.numbers}
+        max={8}
+        handleFieldChange={handleFieldChange}
+      />
+      <NumberInput
+        id="entropy"
+        value={props.options.entropy}
+        handleFieldChange={handleFieldChange}
+        title={(v) => `Entropy: ${v}%`}
+      />
 
-  render() {
-    return (
-      <Box background="light-2" pad="medium" alignContent="center">
-        <NumberInput
-          id="words"
-          value={this.state.words}
-          max={8}
-          handleFieldChange={this.handleFieldChange}
+      <Grid columns={["flex", "flex"]} gap="medium">
+        <Delimiters
+          value={props.options.delimiters}
+          handleFieldChange={handleFieldChange}
+        />
+        <TitleCase
+          value={props.options.titleCase}
+          handleFieldChange={handleFieldChange}
         />
         <NumberInput
-          id="numbers"
-          value={this.state.numbers}
-          max={8}
-          handleFieldChange={this.handleFieldChange}
+          id="upperCase"
+          value={props.options.upperCase}
+          max={props.options.words}
+          handleFieldChange={handleFieldChange}
+          title={(v) => `Upper case: ${v}`}
         />
         <NumberInput
-          id="entropy"
-          value={this.state.entropy}
-          handleFieldChange={this.handleFieldChange}
-          title={(v) => `Entropy: ${v}%`}
+          id="leet"
+          value={props.options.leet}
+          handleFieldChange={handleFieldChange}
+          title={(v) => `Leet: ${v}%`}
         />
-
-        <Grid columns={["flex", "flex"]} gap="medium">
-          <Delimiters
-            value={this.state.delimiters}
-            handleFieldChange={this.handleFieldChange}
-          />
-          <TitleCase
-            value={this.state.titleCase}
-            handleFieldChange={this.handleFieldChange}
-          />
-          <NumberInput
-            id="upperCase"
-            value={this.state.upperCase}
-            max={this.state.words}
-            handleFieldChange={this.handleFieldChange}
-            title={(v) => `Upper case: ${v}`}
-          />
-          <NumberInput
-            id="leet"
-            value={this.state.leet}
-            handleFieldChange={this.handleFieldChange}
-            title={(v) => `Leet: ${v}%`}
-          />
-        </Grid>
-      </Box>
-    );
-  }
-}
+      </Grid>
+    </Box>
+  );
+};
