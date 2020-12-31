@@ -91,7 +91,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
 
   render() {
     return (
-      <Card>
+      <Card elevation="none" border>
         <CardHeader pad="medium" background="background-back">
           Your new password is...
         </CardHeader>

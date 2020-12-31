@@ -35,8 +35,8 @@ export const NumberInput: React.FunctionComponent<NumberInputProps> = (
       <RangeInput
         value={value}
         name={id}
-        min={min || 0}
-        max={max || 100}
+        min={min !== undefined ? min : 0}
+        max={max !== undefined ? max : 100}
         onChange={(event) => handleFieldChange(id, Number(event.target.value))}
       />
     </Box>

@@ -9,6 +9,7 @@ const ResetStyles = createGlobalStyle`
     padding: 0;
     height: 100%;
     width: 100%;
+    background: black;
   }
 `;
 
