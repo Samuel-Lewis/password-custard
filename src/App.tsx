@@ -1,11 +1,12 @@
 import React from "react";
-import { Box, Grid, Grommet, Heading, Main } from "grommet";
+import { Box, Button, Grid, Grommet, Heading, Main } from "grommet";
 import styled from "styled-components";
 import PCFooter from "./components/Footer";
-import PCHeader from "./components/Header";
+import { Header } from "./components/Header";
 import { History } from "./components/History";
 import { Password } from "./components/Password";
-import theme from "./theme";
+import { genTheme } from "./theme";
+import { ThemeMode } from "./types";
 
 const BorderHeading = styled(Heading)`
   text-transform: uppercase;
@@ -13,20 +14,22 @@ const BorderHeading = styled(Heading)`
 
 function App() {
   const [history, setHistory] = React.useState([] as string[]);
+  const [theme, setTheme] = React.useState<ThemeMode>("light");
 
   const onNewPassword = (newPassword: string) => {
     setHistory([newPassword, ...history]);
   };
 
   return (
-    <Grommet theme={theme} full>
+    <Grommet theme={genTheme} full themeMode={theme}>
       <Grid fill rows={["auto", "flex", "auto"]}>
-        <PCHeader />
+        <Header onThemeChange={setTheme} />
+
         <Main
           pad="medium"
           align="center"
           background={{
-            image: `url(${process.env.PUBLIC_URL}/bg_pattern.png)`,
+            image: `url(${process.env.PUBLIC_URL}/bg_pattern_${theme}.png)`,
             repeat: "repeat",
             size: "xsmall",
           }}

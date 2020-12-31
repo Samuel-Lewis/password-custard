@@ -2,7 +2,7 @@ export interface Transformer {
   (tokens: string[]): string[];
 }
 
-export type NumberRange = { min: number; max: number };
+export type ThemeMode = "light" | "dark";
 
 export type PasswordOptions = {
   words: number;

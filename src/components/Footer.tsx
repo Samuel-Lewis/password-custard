@@ -4,7 +4,7 @@ import { Github } from "grommet-icons";
 
 export default function PCFooter() {
   return (
-    <Footer background="light-4" justify="center" pad="small">
+    <Footer justify="center" pad="small">
       <Anchor
         icon={<Github />}
         label="Samuel Lewis"

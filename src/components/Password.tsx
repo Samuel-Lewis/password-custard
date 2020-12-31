@@ -87,10 +87,10 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
   render() {
     return (
       <Card>
-        <CardHeader pad="medium" background="light-3">
+        <CardHeader pad="medium" background="background-back">
           Your new password is...
         </CardHeader>
-        <CardBody align="center" pad="none" background="light-1">
+        <CardBody align="center" pad="none" background="background-front">
           <PasswordField margin={{ top: "large", bottom: "large" }} level={3}>
             {this.state.generatorFunc
               ? this.state.currentPassword
@@ -98,7 +98,7 @@ export class Password extends React.Component<PasswordProps, PasswordState> {
           </PasswordField>
         </CardBody>
 
-        <CardFooter background="light-3">
+        <CardFooter background="background-back">
           <Grid
             align="center"
             fill="horizontal"

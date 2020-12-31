@@ -18,9 +18,9 @@ export const AboutPanel: React.FunctionComponent<AboutPanelProps> = (props) => {
           <Button icon={<Close />} onClick={onClose} />
         </Box>
         <Paragraph fill>
-          Password Custard is a lightweight, client side only, password
-          generator. It draws on long form phrases, for increased security and
-          human consumability (eg, you can kinda remember it and reproduce it).{" "}
+          Password Custard is a client side only password generator. It draws on
+          long form phrases, for increased security and human consumability (eg,
+          you can kinda remember it and reproduce it).{" "}
           <Anchor href="https://xkcd.com/936/" label="Relevant xkcd" />.
         </Paragraph>
         <Heading level={4} margin="none">

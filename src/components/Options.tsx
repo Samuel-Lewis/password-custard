@@ -32,7 +32,7 @@ export const Options: React.FunctionComponent<OptionsProps> = (props) => {
   );
 
   return (
-    <Box background="light-2" pad="medium" alignContent="center">
+    <Box background="background-back" pad="medium" alignContent="center">
       <NumberInput
         id="words"
         value={props.options.words}
