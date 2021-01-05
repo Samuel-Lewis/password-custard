@@ -17,7 +17,7 @@ import { getDefaultOptions, Options } from "./Options";
 const PasswordField = styled(Heading)`
   font-family: "Monaco";
   text-align: center;
-  overflow: scroll;
+  overflow: auto;
 `;
 
 type PasswordProps = {
