@@ -1,4 +1,4 @@
-# [Password Custard](https://samuel-lewis.github.io/password-custard/)
+# [Password Custard](https://password-custard.samuel-lewis.com)
 
 ## Available Scripts
 
@@ -7,7 +7,7 @@
   Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 - ### `yarn deploy`
-  Builds the app and deploys it to a github pages branch at [samuel-lewis.github.io/password-custard](https://samuel-lewis.github.io/password-custard/)
+  Builds the app and deploys it to a github pages branch at https://password-custard.samuel-lewis.com
 
 ## Attributions and Tools
 
