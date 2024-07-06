@@ -29,7 +29,7 @@ export const getDefaultOptions = (): PasswordOptions => {
 
 export const Options: React.FunctionComponent<OptionsProps> = (props) => {
   const { onFieldChange } = props;
-  const handleFieldChange = React.useCallback(
+  const handleFieldChange: HandleFieldChange = React.useCallback(
     (field, value) => {
       onFieldChange(field, value);
     },
