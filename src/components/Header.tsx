@@ -51,7 +51,6 @@ export const Header: React.FunctionComponent<HeaderProps> = (props) => {
             onClick={() => setAboutOpen(true)}
           />
         </Box>
-            <Moon />
         <Button
           onClick={themeChangeCallback}
           icon={darkMode ? <Sun color="text" /> : <Moon color="text" />}
